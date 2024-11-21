@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: A sample template for a movies API
+
+Resources:
+  GetMovieFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: get_movie/
+      Handler: app.lambda_handler
+      Runtime: python3.10
+      Events:
+        GetMovie:
+          Type: Api
+          Properties:
+            Path: /movies/{movieId}
+            Method: get
+
+  ListMoviesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: list_movies/
+      Handler: app.lambda_handler
+      Runtime: python3.10
+      Events:
+        ListMovies:
+          Type: Api
+          Properties:
+            Path: /movies
+            Method: get
